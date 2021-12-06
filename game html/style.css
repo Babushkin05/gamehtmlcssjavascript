@@ -1,0 +1,29 @@
+#gameboard{
+height: 500px;
+width: 700px;
+background-color: black;
+position: relative;
+border: darkgrey;
+
+}
+#platform {
+    height: 25px;
+    width: 80px;
+    background-color: blue;
+    position: absolute;
+    border-radius: 15px;
+    /* top: 15%s; */
+    left: 40%;
+    margin-top: 65%;
+
+}
+#ball {
+    margin-top: 20px;
+    margin-left: 20px; 
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background-color: crimson;
+    position: absolute;
+
+}
