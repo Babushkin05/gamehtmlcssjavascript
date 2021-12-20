@@ -1,9 +1,10 @@
 #gameboard{
 height: 500px;
 width: 700px;
-background-color: black;
+/* background-color: black; */
 position: relative;
 border: darkgrey;
+background-image: url('коз.png');
 
 }
 #platform {
@@ -22,8 +23,17 @@ border: darkgrey;
     margin-left: 20px; 
     height: 20px;
     width: 20px;
+    border: black;
     border-radius: 50%;
     background-color: crimson;
     position: absolute;
 
 }
+.brick {
+    position: absolute;
+    width: 50px;
+    height: 25px;
+    /* background-color: green; */
+    background-image: url('кирпичик.png');
+    border: 1px solid black;
+ }
