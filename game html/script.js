@@ -6,6 +6,10 @@ var platfObj = new(Object)
 // var ballInTheGameboard;
 console.log(KeyboardEvent)
 
+rad=ball.offsetHeight/2
+brickh=25
+brickw=50
+
 var gameLevel = [
     { x: 20, y: 100 },
     { x: 75, y: 100 },
@@ -86,6 +90,9 @@ platfObj.Y = platform.offsetTop
 platfObj.L = platform.clientWidth
 platfObj.dX = 10}
 
+     
+
+
 var ballObj = new(Object)
 ballObj.X = 300
 ballObj.Y = 400
@@ -117,7 +124,19 @@ function onArrowKeyDown(ev) {
 document.addEventListener("keydown", onArrowKeyDown)
 
 
-function moveBall() {
+
+function createBrick(brick) {
+    var el = document.createElement("div")
+    el.classList.add("brick")
+    el.style.top = brick.y + "px"
+    el.style.left = brick.x + "px"
+ 
+    gameboard.appendChild(el)
+ }
+
+
+
+ function moveBall() {
     if(ballObj.Y<=gameboard.offsetHeight-ball.offsetHeight-20) {
     if(ballObj.X==gameboard.offsetWidth-ball.offsetWidth-20 || ballObj.X == -20) {
         ballObj.dX*=-1;
@@ -125,11 +144,29 @@ function moveBall() {
     if( ballObj.Y==-20 ||  (ballObj.Y==platfObj.Y-ball.offsetHeight-20 && ballObj.X<=platfObj.X+ball.offsetWidth+20 && ballObj.X>=platfObj.X-ball.offsetWidth-20 )) {   
         ballObj.dY*=-1
     }
+
+    
+
+    gameLevel.forEach((brick) => {
+        if(brick.y+brickh==ballObj.Y+5){
+            if(brick.x<=ballObj.Y && brick.x+brickw>=ballObj.Y+(2*rad)) {
+                ballObj.dY*=-1;
+                // brick.x=" "
+                // brick.y=" "
+            }
+        }
+        
+    })
+    
+
+
     ballObj.X += ballObj.dX
         ballObj.Y += ballObj.dY
         ball.style.left = ballObj.X + "px"
         ball.style.top = ballObj.Y + "px"
         window.requestAnimationFrame(moveBall)
+
+      
 }
 else{
     res=confirm("ты проиграл(( хочешь еще раз?")
@@ -156,13 +193,3 @@ else{
 
 
 window.requestAnimationFrame(moveBall)
-
-
-function createBrick(brick) {
-    var el = document.createElement("div")
-    el.classList.add("brick")
-    el.style.top = brick.y + "px"
-    el.style.left = brick.x + "px"
- 
-    gameboard.appendChild(el)
- }
